@@ -1,0 +1,103 @@
+<mxfile host="65bd71144e">
+    <diagram id="F42zqdNRlmDHRbL2Cysi" name="Page-1">
+        <mxGraphModel dx="1204" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="Main Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="40" width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Connects to all other servers,&lt;br&gt;uses the information and sends to UI" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="3">
+                    <mxGeometry x="30" y="40" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Database&#10;MongoDB" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="580" width="110" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="4" target="6">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="55" as="sourcePoint"/>
+                        <mxPoint x="54.5" y="-50" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="User Management Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="330" width="120" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Database Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="450" width="110" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Posts Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="330" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Social Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="330" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Comments Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="330" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;curved=1;" edge="1" parent="1" source="6" target="10">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="480" y="420" as="sourcePoint"/>
+                        <mxPoint x="530" y="370" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="680" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="6" target="5">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="210" y="410" as="sourcePoint"/>
+                        <mxPoint x="260" y="360" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" value="?Likes Server?" style="swimlane;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="220" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="There is no like if there&lt;br&gt;&amp;nbsp;is no comment/post" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="15">
+                    <mxGeometry y="30" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="6" target="9">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="480" y="420" as="sourcePoint"/>
+                        <mxPoint x="530" y="370" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="11">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="460" as="sourcePoint"/>
+                        <mxPoint x="385" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="Location Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="330" width="120" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="?Tags Server?" style="swimlane;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="220" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="There is no tag if there&lt;br&gt;&amp;nbsp;is no comment/post" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="20">
+                    <mxGeometry x="10" y="30" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;curved=1;" edge="1" parent="1" source="22" target="6">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="300" y="330"/>
+                            <mxPoint x="300" y="410"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="Notification Server" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="327.5" y="240" width="115" height="70" as="geometry">
+                        <mxRectangle x="320" y="210" width="140" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" value="" style="endArrow=classic;startArrow=classic;html=1;curved=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="6" target="18">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="480" y="420" as="sourcePoint"/>
+                        <mxPoint x="530" y="370" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
