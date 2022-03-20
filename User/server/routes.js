@@ -1,10 +1,9 @@
 const express = require("express");
-const User = require("../models/user");
+const User = require("../db/models/user");
 const router = new express.Router();
 
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
-
   try {
     const token = await user.generateAuthToken();
     await user.save();
@@ -25,6 +24,24 @@ router.post("/users/login", async (req, res) => {
     res.send({ user, token });
   } catch (e) {
     res.status(400).send(e);
+  }
+});
+
+router.post("/users/logout", async (req, res) => {
+  try {
+    req.body.user.tokens = req.body.user.tokens.filter((token) => {
+      return token.token !== req.body.token;
+    });
+    await User.findByIdAndUpdate(
+      req.body.user._id,
+      {
+        $set: req.body.user,
+      },
+      { new: true, useFindAndModify: false }
+    );
+    res.send();
+  } catch (e) {
+    res.status(500).send();
   }
 });
 
