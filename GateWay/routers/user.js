@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-const auth = require("../middlewares/auth");
 const router = new express.Router();
 const UserURL = process.env.LOCAL_USER_API_URL;
 
@@ -22,11 +21,13 @@ router.post("/users/login", async (req, res) => {
   }
 });
 
-router.post("/users/logout", auth, async (req, res) => {
+router.post("/users/logout", async (req, res) => {
+  console.log(req);
   try {
-    await axios.post(`${UserURL}/users/logout`, {
-      user: req.user,
-      token: req.token,
+    await axios.post(`${UserURL}/users/logout`, req, {
+      headers: {
+        Authorization: req.headers.authorization,
+      },
     });
     res.send();
   } catch (e) {

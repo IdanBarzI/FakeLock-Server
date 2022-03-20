@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
-const User = mongoose.model("User", {});
+const User = require("../db/models/user");
 
 const auth = async (req, res, next) => {
   try {
+    console.log(req.headers);
     const token = req.header("Authorization").replace("Bearer ", "");
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
     const user = await User.findOne({
