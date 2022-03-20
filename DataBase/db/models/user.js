@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const validator = require("validator");
-const hashPassword = require("../../helpers/hashPassword");
-const passwordCompare = require("../../helpers/passwordCompare");
+const hashPassword = require("../../../User/helpers/hashPassword");
+const passwordCompare = require("../../../User/helpers/passwordCompare");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema(
