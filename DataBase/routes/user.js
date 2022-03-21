@@ -1,6 +1,7 @@
 const express = require("express");
 const auth = require("../middlewares/auth");
 const User = require("../db/models/user");
+const { CLIENT_RENEG_LIMIT } = require("tls");
 const router = new express.Router();
 
 router.post("/users", async (req, res) => {
@@ -44,6 +45,21 @@ router.post("/users/logout", auth, async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).send();
+  }
+});
+
+router.post("/users/loginFacebook", async (req, res) => {
+  try {
+    await User.findbyCredentials(req.email, req.password);
+    console.log("No user found!");
+  } catch (error) {
+    console.log("User exists!");
+  }
+  try {
+    // const response = await User.findbyCredentials(req.email, req.password);
+    res.send(response.data);
+  } catch (e) {
+    res.status(400).send(e);
   }
 });
 
