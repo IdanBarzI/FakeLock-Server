@@ -35,4 +35,13 @@ router.post("/users/logout", async (req, res) => {
   }
 });
 
+router.post("/users/loginFacebook", async (req, res) => {
+  try {
+    const response = await axios.post(`${UserURL}/users/loginFacebook`, req.body);
+    res.send(response.data);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
 module.exports = router;
