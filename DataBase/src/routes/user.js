@@ -44,6 +44,18 @@ router.post("/users/login-facebook", async (req, res) => {
   }
 });
 
+router.get("/users/me", auth, async (req, res) => {
+  try {
+    if (!req.user) {
+      throw new Error();
+    }
+
+    res.send(req.user);
+  } catch (e) {
+    res.status(404).send(e.message);
+  }
+});
+
 router.post("/users/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
@@ -97,6 +109,15 @@ router.delete("/users/me/avatar", auth, async (req, res) => {
   res.send();
 });
 
+router.delete("/users/me", auth, async (req, res) => {
+  try {
+    await req.user.remove();
+    res.send(req.user);
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
 router.get("/users/:id/avatar", auth, async (req, res) => {
   try {
     console.log("req.params");
@@ -117,8 +138,6 @@ router.get("/users/:id/avatar", auth, async (req, res) => {
 
 router.get("/users/:id", async (req, res) => {
   try {
-    console.log("req.params");
-    console.log(req.params);
     const user = await User.findById(req.params.id);
 
     if (!user) {

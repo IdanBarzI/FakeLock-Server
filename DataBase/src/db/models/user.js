@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 const validator = require("validator");
 const hashPassword = require("../../helpers/hashPassword");
 const passwordCompare = require("../../helpers/passwordCompare");
 const jwt = require("jsonwebtoken");
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
@@ -59,7 +59,7 @@ userSchema.methods.toJSON = function () {
 
   delete userObject.password;
   delete userObject.tokens;
-  // delete userObject.avatar;
+  delete userObject.avatar; //tbd
   delete userObject.updatedAt;
   delete userObject.createdAt;
 
@@ -100,20 +100,11 @@ userSchema.statics.findbyCredentialsOrCreate = async (
   userName
 ) => {
   const user = await User.findOne({ email });
-  console.log(email, "email");
-  console.log(password, "password");
-  console.log(userName, "userName");
+
   if (!user) {
     const user = new User({ email, password, userName });
-    console.log(user, "user");
     await user.save();
   }
-
-  // const isMatch = await passwordCompare(password, user.password);
-
-  // if (!isMatch) {
-  //   throw new Error("Unable to login");
-  // }
 
   return user;
 };
