@@ -50,7 +50,7 @@ const userSchema = new Schema(
 userSchema.virtual("posts", {
   ref: "Post",
   localField: "_id",
-  foreignField: "owner",
+  foreignField: "publisher",
 });
 
 userSchema.methods.toJSON = function () {
