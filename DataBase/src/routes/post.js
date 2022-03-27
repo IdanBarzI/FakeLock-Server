@@ -31,4 +31,58 @@ router.post("/posts", auth, upload.single("image"), async (req, res) => {
   }
 });
 
+router.get("/posts/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      throw new Error();
+    }
+
+    res.status(201).send(post);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
+
+//find all, or by filter other than ID (query received from req)
+router.get("/posts", async ({query}, res) =>{
+  try {
+    const posts = await Post.find(query);
+
+    if(!posts){
+      return "No posts found!";
+    }
+    res.status(201).send(posts);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
+
+router.put("/posts", async (req, res) =>{
+  try {
+    const updatedPost = await Post.findOneAndUpdate(req.params.id, req.body);
+
+    if(!updatedPost){
+      throw new Error("No post found!");
+    }
+    res.status(201).send(updatedPost);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
+
+router.delete("/posts/:id", async (req, res) =>{
+  try {
+    const deletedPost = await Post.findOneAndDelete(req.params.id);
+
+    if (!deletedPost){
+      throw new Error("Deletion failed!");
+    }
+    res.status(201).send(deletedPost);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+})
+
 module.exports = router;
