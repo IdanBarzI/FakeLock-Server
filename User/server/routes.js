@@ -1,11 +1,11 @@
 const express = require("express");
 const axios = require("axios");
+const databaseServer = require("../helpers/createAxios");
 const router = new express.Router();
-const DataBaseURL = process.env.LOCAL_DATABASE_URL;
 
 router.post("/users", async (req, res) => {
   try {
-    const response = await axios.post(`${DataBaseURL}/users`, req.body);
+    const response = await databaseServer.post(`users`, req.body);
     res.status(201).send(response.data);
   } catch (e) {
     res.status(400).send(e);
@@ -14,16 +14,30 @@ router.post("/users", async (req, res) => {
 
 router.post("/users/login", async (req, res) => {
   try {
-    const response = await axios.post(`${DataBaseURL}/users/login`, req.body);
+    const response = await databaseServer.post(`users/login`, req.body);
     res.status(201).send(response.data);
   } catch (e) {
     res.status(400).send(e);
   }
 });
 
+router.post("/users/login-facebook", async (req, res) => {
+  try {
+    console.log(req.body);
+    const response = await databaseServer.post(
+      `users/login-facebook`,
+      req.body
+    );
+    res.send(response.data);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
 router.post("/users/logout", async (req, res) => {
   try {
-    await axios.post(`${DataBaseURL}/users/logout`, req, {
+    await databaseServer.post(`users/logout`, req, {
       headers: {
         Authorization: req.headers.authorization,
       },
@@ -34,12 +48,42 @@ router.post("/users/logout", async (req, res) => {
   }
 });
 
-router.post("/users/loginFacebook", async (req, res) => {
+router.get("/users/:id/avatar", async (req, res) => {
   try {
-    const response = await axios.post(`${UserURL}/users/loginFacebook`, req.body);
+    console.log(req.params.id);
+    const response = await databaseServer.get(
+      `users/${req.params.id}/avatar`,
+      req,
+      {
+        headers: req.headers,
+      }
+    );
+    res.send(response.data);
+  } catch (e) {
+    console.log(e);
+    res.status(404).send();
+  }
+});
+
+router.post("/users/me/avatar", async (req, res) => {
+  try {
+    const response = await databaseServer.post(`users/me/avatar`, req, {
+      headers: req.headers,
+    });
     res.send(response.data);
   } catch (e) {
     res.status(400).send(e);
+  }
+});
+
+router.get("/users/:id", async (req, res) => {
+  try {
+    const response = await databaseServer.get(`users/${req.params.id}`, req, {
+      headers: req.headers,
+    });
+    res.send(response.data);
+  } catch (e) {
+    res.status(404).send();
   }
 });
 
