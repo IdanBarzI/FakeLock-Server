@@ -82,7 +82,6 @@ test("should upload avatar image", async () => {
     .expect(200);
 
   const user = await User.findById(userOneId);
-  console.log("asdasda", expect.any(Buffer));
   expect(user.avatar).not.toBeNull();
   // expect(user.avatar).toEqule(expect.any(Buffer));
 });
