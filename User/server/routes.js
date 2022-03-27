@@ -5,6 +5,7 @@ const router = new express.Router();
 
 router.post("/users", async (req, res) => {
   try {
+    console.log(req.body);
     const response = await databaseServer.post(`users`, req.body);
     res.status(201).send(response.data);
   } catch (e) {
