@@ -18,4 +18,16 @@ router.post("/posts", async (req, res) => {
   }
 });
 
+router.get("/posts", async (req, res)=>{
+  // res.status(200).send("Success");
+  try {
+    const response = await postServer.get(`posts`,req,{
+      headers: req.header
+    });
+    res.status(200).send(response)
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
 module.exports = router;
